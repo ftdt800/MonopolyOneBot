@@ -1,0 +1,222 @@
+﻿// 30.03.2022
+#name "New Script"
+LOGSHOW (1, 100,100)
+
+//В чат боту нужно писать команды, если buy = 2, К - купить, НК - НЕ покупать
+$player = 2 //- На каком месте находимся мы по списку, от 1 до 5
+$t = 0 //1 - вкл, делать ход в последние секунды
+$buy = 1 //1 - всегда покупать, 0 - всегда не покупать,
+$trade = 0//1 - всегда принимать, 0 - всегда отклонять
+THREAD(search, 0)
+   WAIT(3)
+   //   IF($t = 1) //ходим в последний момент
+   //      IF_PICTURE_IN (389,140, 472,1119, "time.bmp")
+   //         IF_PICTURE_IN (741,273, 1441,485, "kubiki.bmp")
+   //            LCLICK($_return1, $_return2)
+   //         END_IF
+   //         WAITMS(50)
+   //      END_IF //ходим в последний момент
+   //      IF_PICTURE_IN (389,140, 472,1119, "time1.bmp")
+   //         IF_PICTURE_IN (741,273, 1441,485, "kubiki.bmp")
+   //            LCLICK($_return1, $_return2)
+   //         END_IF
+   //         WAITMS(50)
+   //      END_IF
+   //   END_IF //ходим в последний момент
+   //   IF_PICTURE_IN (389,140, 472,1119, "time2.bmp")
+   //      IF_PICTURE_IN (741,273, 1441,485, "kubiki.bmp")
+   //         LCLICK($_return1, $_return2)
+   //      END_IF
+   //      WAITMS(50)
+   //
+   //   END_IF //ходим в последний момент
+   //   IF_PICTURE_IN (389,140, 472,1119, "time3.bmp")
+   //      IF_PICTURE_IN (741,273, 1441,485, "kubiki.bmp")
+   //         LCLICK($_return1, $_return2)
+   //      END_IF
+   //      WAITMS(50)
+   //
+   //   END_IF //ходим в последний момент
+   //   IF_PICTURE_IN (389,140, 472,1119, "time4.bmp")
+   //      IF_PICTURE_IN (741,273, 1441,485, "kubiki.bmp")
+   //         LCLICK($_return1, $_return2)
+   //      END_IF
+   //      WAITMS(50)
+   
+   //   END_IF  //ходим нормально
+   GETSCREEN(779, 392, 1424, 453)
+   IF_PICTURE_IN (779, 392, 1424, 453, "kubiki.bmp")
+      LCLICK($_return1, $_return2)
+   END_IF
+   LOGWRITE ("Кубики отработали!")  
+   IF($buy = 1) //покупаем все бизнесы
+      GETSCREEN(782,418, 1100,473)
+      IF_PICTURE_IN (782,418, 1100,473, "kupit.bmp")
+         LCLICK($_return1, $_return2)
+      END_IF
+      LOGWRITE ("Бизнес бы купился")
+   ELSE
+      IF($buy = 0) //на аук все бизнесы
+         GETSCREEN(1100,421, 1424,471)
+         IF_PICTURE_IN (1100,421, 1424,471, "ah.bmp")
+            LCLICK($_return1, $_return2)
+            LOGWRITE ("Бизнес бы не купился")
+         END_IF
+      END_IF
+   END_IF
+   GETSCREEN(925,428, 1263,466)
+   IF_PICTURE_IN (925,428, 1263,466, "zap.bmp")
+      LCLICK($_return1, $_return2)
+   END_IF
+   LOGWRITE ("Заплатить отработало!")
+   GETSCREEN(782,418, 1100,473)
+   IF_PICTURE_IN (782,418, 1100,473, "kupit2.bmp")
+      LCLICK(1262 474)
+   END_IF
+   LOGWRITE ("Нема денег отработало")
+END_THREAD
+THREAD(online, 1)
+   wait(1)
+   if($player = 1)
+      $check = 0
+      WHILE($check = 0)
+         GETSCREEN
+         IF_PIXEL_IN(502,223, 502,223, 1776150)
+            $check = 1
+            SETTHREAD (search, 0)
+         ELSE
+            SETTHREAD (search, 1)
+         END_IF
+      END_CYC
+   END_IF
+   if($player = 2)
+      $check = 0
+      WHILE($check = 0)
+         GETSCREEN
+         IF_PIXEL_IN(502,438, 502,438, 1776150)
+            $check = 1
+            SETTHREAD (search, 0)
+         ELSE
+            SETTHREAD (search, 1)
+         END_IF
+      END_CYC
+   END_IF
+   if($player = 3)
+      $check = 0
+      WHILE($check = 0)
+         GETSCREEN
+         IF_PIXEL_IN(502,633, 502,633, 1776150)
+            $check = 1
+            SETTHREAD (search, 0)
+         ELSE
+            SETTHREAD (search, 1)
+         END_IF
+      END_CYC
+   END_IF
+   if($player = 4)
+      $check = 0
+      WHILE($check = 0)
+         GETSCREEN
+         IF_PIXEL_IN(502,829, 502,829, 1776150)
+            $check = 1
+            SETTHREAD (search, 0)
+         ELSE
+            SETTHREAD (search, 1)
+         END_IF
+      END_CYC
+   END_IF
+   if($player = 5)
+      $check = 0
+      WHILE($check = 0)
+         GETSCREEN
+         IF_PIXEL_IN(502,1029, 502,1029, 1776150)
+            $check = 1
+            SETTHREAD (search, 0)
+         ELSE
+            SETTHREAD (search, 1)
+         END_IF
+      END_CYC
+   END_IF
+END_THREAD
+THREAD(yesno, 1)
+   IF($buy = 1) //принимаем все трейды
+      GETSCREEN
+      IF_PICTURE_IN (1261,278, 948,379, "yes.bmp")
+         LCLICK($_return1, $_return2)
+      END_IF
+   ELSE
+      IF($buy = 0) //отклоняем все трейды
+         IF_PICTURE_IN (1261,278, 948,379, "no.bmp")
+            LCLICK($_return1, $_return2)
+         END_IF
+      END_IF
+   END_IF
+END_THREAD
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//GETSCREEN
+//IF($t = 1)
+//   IF_PICTURE_IN (306,128, 624,1150, "time.bmp",)
+//      LCLICK(1089, 413)
+//      WAITMS(100)
+//   END_IF
+//ELSE
+//   IF_PICTURE_IN (741,273, 1441,485, "kubiki.bmp",)
+//      LCLICK(1089, 413)
+//      WAITMS(100)
+//   END_IF
+//END_IF
+///////////////////////
+//IF($buy = 1)
+//   IF_PICTURE_IN (743,278, 975,379, "pokupat.bmp",)
+//      LCLICK(1089, 413)
+//   END_IF
+//ELSE
+//   IF($buy = 0)
+//      LCLICK(1260,434)
+//   END_IF
+//ELSE
+//   $time = $_time_t + 10 // таймер на 10 секунд
+//   WHILE($time > $_time_t)
+//      IF_PICTURE_IN (745,763, 1442,924, "k.bmp", -1, 100)
+//         $time = 0
+//         LCLICK($_return1, $_return2)
+//         WAITMS(100)
+//      ELSE
+//         IF_PICTURE_IN (745,763, 1442,924, "k.bmp", -1, 100)
+//            $time = 0
+//            LCLICK($_return1, $_return2)
+//            WAITMS(100)
+//
+//         END_IF
+//      END_CYC
+//      IF($time ! 0)
+//         // время истекло, картинка не найдена
+//      END_IF
+//
+//   END_IF
+//END_IF
+
+
+
+
