@@ -152,28 +152,6 @@ THREAD(yesno, 1)
       END_IF
    END_IF
 END_THREAD
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //GETSCREEN
 //IF($t = 1)
 //   IF_PICTURE_IN (306,128, 624,1150, "time.bmp",)
