@@ -1,6 +1,9 @@
-# MonopolyOneBot  
-### Бот сделан на ClickerMann  
-### Функции бота:  
+# MonopolyOneBot
+<img src="https://img.shields.io/github/last-commit/ftdt800/MonopolyOneBot?style=for-the-badge">
+
+### Бот сделан на ClickerMann
+
+## Функции бота:
 1. Делать ход в последние секунды Вкл/Выкл  
 2. Покупать/Не покупать компании  
 3. Принимать/Отклонять трейды  
